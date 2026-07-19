@@ -4,18 +4,18 @@
 		<print pretty="true">Preparing installation...</print>
 
 		<!-- Mobile Controls Library -->
-		<git name="mobile-controls" url="https://github.com/ArkoseLabsOfficial/mobile-controls" />
+		<git name="mobile-controls" url="https://github.com/azmlpoh/mobile-controls-dev" />
 
 		<!-- OpenFL & Lime (Required for Flixel) -->
 		<git name="openfl" url="https://github.com/CodenameCrew/cne-openfl" ref="old" />
-		<git name="lime" url="https://github.com/ArkoseLabsOfficial/lime" />
+		<git name="lime" url="https://github.com/azmlpoh/lime-8.2.2" />
 
 		<!-- Flixel -->
 		<git name="flixel" url="https://github.com/CodenameCrew/cne-flixel" ref="old" />
 		<git name="flixel-addons" url="https://github.com/CodenameCrew/cne-flixel-addons" ref="old" />
 
 		<!-- Other Libraries -->
-		<git name="hscript-improved" url="https://github.com/CodenameCrew/hscript-improved" ref="codename-dev" />
+		<git name="hscript-improved" url="https://github.com/azmlpoh/hscript-improved-codename" />
 		<git name="hxdiscord_rpc" url="https://github.com/CodenameCrew/cne-hxdiscord_rpc" ref="old" skipDeps="true" />
 		<lib name="funkin-modchart" skipDeps="true" />
 		<lib name="hxvlc" version="1.9.3" skipDeps="true" />
