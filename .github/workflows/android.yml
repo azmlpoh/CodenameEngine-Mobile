@@ -5,6 +5,9 @@ on:
 jobs:
   build:
     name: Android Build
+    permissions:
+      actions: write
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
