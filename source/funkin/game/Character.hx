@@ -51,6 +51,11 @@ class Character extends FunkinSprite implements IBeatReceiver implements IOffset
 	public var iconColor:Null<FlxColor> = null;
 	public var gameOverCharacter:String = Character.FALLBACK_DEAD_CHARACTER;
 
+	/*
+		Whether to use the center or the top-left of the character as the camera origin point.
+		This is for compatibility with old texture atlas characters.
+	*/
+	public var centeredCamera:Bool = true;
 	public var cameraOffset:FlxPoint = FlxPoint.get(0, 0);
 	public var globalOffset:FlxPoint = FlxPoint.get(0, 0);
 	public var extraOffset:FlxPoint = FlxPoint.get(0, 0);
@@ -304,7 +309,7 @@ class Character extends FunkinSprite implements IBeatReceiver implements IOffset
 	}
 
 	public inline function getCameraPosition() {
-		var midpoint:FlxPoint = getMidpoint();
+		var midpoint:FlxPoint = centeredCamera ? getMidpoint() : getPosition();
 		var event = EventManager.get(PointEvent).recycle(
 			midpoint.x + (isPlayer ? -100 : 150) + globalOffset.x + cameraOffset.x,
 			midpoint.y - 100 + globalOffset.y + cameraOffset.y);
@@ -335,7 +340,7 @@ class Character extends FunkinSprite implements IBeatReceiver implements IOffset
 			scale.x *= -1;
 			__reverseTrailProcedure = true;
 		}
-	
+
 	public dynamic function afterTrailCache()
 		if (__reverseTrailProcedure) {
 			flipX = !flipX;
@@ -410,6 +415,10 @@ class Character extends FunkinSprite implements IBeatReceiver implements IOffset
 		if (hasInterval) beatInterval = Std.parseInt(xml.x.get("interval"));
 
 		loadSprite(Paths.image('characters/$sprite'));
+
+		if (xml.x.exists("centercam")) centeredCamera = (xml.x.get("centercam") == "true");
+		else centeredCamera = !isAnimate;
+
 		for(node in xml.elements) {
 			switch(node.name) {
 				case "anim":
@@ -442,7 +451,7 @@ class Character extends FunkinSprite implements IBeatReceiver implements IOffset
 
 	public static var characterProperties:Array<String> = [
 		"x", "y", "sprite", "scale", "antialiasing",
-		"flipX", "camx", "camy", "isPlayer", "icon",
+		"flipX", "camx", "camy", "centercam", "isPlayer", "icon",
 		"color", "gameOverChar", "holdTime", "applyStageMatrix"
 	];
 	public static var characterAnimProperties:Array<String> = [
