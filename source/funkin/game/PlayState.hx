@@ -194,6 +194,12 @@
 		public var camFollow:FlxObject;
 
 		/**
+		* Point defining the camera follow offset.
+		* Used for the "Camera Movement" event.
+		*/
+		public var cameraFocusOffset:FlxPoint;
+
+		/**
 		* Previous cam follow.
 		*/
 		private static var smoothTransitionData:PlayStateTransitionData;
@@ -732,6 +738,8 @@
 			camFollow = new FlxObject(0, 0, 2, 2);
 			add(camFollow);
 
+			cameraFocusOffset = FlxPoint.get();
+
 			if (SONG.stage == null || SONG.stage.trim() == "") SONG.stage = Flags.DEFAULT_STAGE;
 			add(stage = new Stage(SONG.stage));
 
@@ -1137,6 +1145,8 @@
 				remove(stage, true);
 			}
 
+			cameraFocusOffset.put();
+
 			scripts = FlxDestroyUtil.destroy(scripts);
 
 			super.destroy();
@@ -1524,6 +1534,8 @@
 
 		public function moveCamera() if (strumLines.members[curCameraTarget] != null) {
 			var data:CamPosData = getStrumlineCamPos(curCameraTarget);
+			data.pos.add(cameraFocusOffset.x, cameraFocusOffset.y);
+
 			if (data.amount > 0) {
 				var event = gameAndCharsEvent("onCameraMove", EventManager.get(CamMoveEvent).recycle(data.pos, strumLines.members[curCameraTarget], data.amount));
 				if (!event.cancelled)
@@ -1607,6 +1619,9 @@
 					}
 
 					curCameraTarget = event.params[0];
+
+					cameraFocusOffset.set(event.params[5], event.params[6]);
+
 					moveCamera();
 
 					if (strumLines.members[curCameraTarget] != null) {
