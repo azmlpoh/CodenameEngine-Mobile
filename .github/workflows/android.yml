@@ -3,6 +3,9 @@ name: Android Build
 on:
   workflow_dispatch:
   workflow_call:
+env:
+  HAXE_VERSION: 4.3.7
+  HXCPP_COMPILE_CACHE: ${{ github.workspace }}/.hxcpp_cache
 
 jobs:
   build:
