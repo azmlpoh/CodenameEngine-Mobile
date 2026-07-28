@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
   workflow_call:
 env: 
-HAXE_VERSION: 4.3.7
-HXCPP_COMPILE_CACHE: ${{ github.workspace }}/.hxcpp_cache
-PROJECT_NAME: CodenameEngine
+  PROJECT_NAME: CodenameEngine
+  HAXE_VERSION: 4.3.7
+  HXCPP_COMPILE_CACHE: ${{ github.workspace }}/.hxcpp_cache
 jobs:
   build:
     name: iOS Build
