@@ -178,6 +178,7 @@ class HScript extends Script {
 
 		interp.allowStaticVariables = interp.allowPublicVariables = false;
 		var savedVariables:Map<String, Dynamic> = [];
+		var defaultVars = Script.getDefaultVariables(this);
 		for(k=>e in interp.variables) {
 			if (!Reflect.isFunction(e) && !defaultVars.exists(k)) {
 				savedVariables[k] = e;
