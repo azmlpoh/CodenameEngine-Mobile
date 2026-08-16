@@ -87,8 +87,7 @@ class ScriptPack extends Script {
 	public override function call(func:String, ?parameters:Array<Dynamic>):Dynamic {
 		for(e in scripts)
 			if (e.active)
-				__eventArgs[0] = event; // set per-script so nested event dispatch on the same pack can't clobber it
-				e.call(func, __eventArgs);
+				e.call(func, parameters);
 		return null;
 	}
 
@@ -102,7 +101,8 @@ class ScriptPack extends Script {
 		for(e in scripts) {
 			if(!e.active) continue;
 
-			e.call(func, [event]);
+			__eventArgs[0] = event; // set per-script so nested event dispatch on the same pack can't clobber it
+			e.call(func, __eventArgs);
 			if (event.cancelled && !event.__continueCalls) break;
 		}
 		return event;
