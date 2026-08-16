@@ -93,7 +93,7 @@ class AssetsLibraryList extends AssetLibrary {
 			//cacheTimePaths.remove(id);
 		}
 
-		cacheTimePaths.set(id, sec);
+		cacheTimePaths.set(id, time);
 
 		for (k=>l in libraries) {
 			if (shouldSkipLib(l, source)) continue;
