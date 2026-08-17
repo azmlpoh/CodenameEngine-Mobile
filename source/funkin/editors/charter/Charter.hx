@@ -1169,7 +1169,7 @@ class Charter extends UIState {
 		// Event Spr
 		for (addEventSpr in [localAddEventSpr, globalAddEventSpr]) {
 			addEventSpr.incorporeal = true;
-			if var onLeft:Bool = (!addEventSpr.global) != Options.charterSwapEventSides;
+			var onLeft:Bool = (!addEventSpr.global) != Options.charterSwapEventSides;
 			if ((onLeft ? mousePos.x < 0 : mousePos.x > strumLines.totalKeyCount * 40) && gridActionType == NONE && inBoundsY) {
 				var event = getHoveredEvent(mousePos.y, !addEventSpr.global ? leftEventsGroup : rightEventsGroup);
 				var hoveredWidth:Float = event != null ? 27 + 40 + event.bWidth : addEventSpr.bWidth;
