@@ -227,8 +227,9 @@ class AssetsLibraryList extends AssetLibrary {
 			Logs.infos("Source assets detected. Switching into source assets.");
 			switchToSourceAssets();
 		}
-		__defaultLibraries.push(ModsFolder.loadLibraryFromFolder('assets', rootDirectory, true, SOURCE));
 		#end
+
+		__defaultLibraries.push(ModsFolder.loadLibraryFromFolder('assets', rootDirectory, true, null, SOURCE));
 
 		#end
 
