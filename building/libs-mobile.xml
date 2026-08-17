@@ -8,7 +8,7 @@
 
 		<!-- OpenFL & Lime (Required for Flixel) -->
 		<git name="openfl" url="https://github.com/CodenameCrew/cne-openfl" ref="old" />
-		<git name="lime" url="https://github.com/azmlpoh/lime-8.2.2" />
+		<git name="lime" url="https://github.com/QQQEB159/lime-8.3.1" />
 
 		<!-- Flixel -->
 		<git name="flixel" url="https://github.com/CodenameCrew/cne-flixel" ref="old" />
