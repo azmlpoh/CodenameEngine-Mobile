@@ -596,6 +596,7 @@
 			<str id="spritePath">Sprite Path\n(Needs Refresh)</str>
 			<str id="startCamPos">Start Camera Position\n(X, Y)</str>
 			<str id="zoom">Zoom</str>
+			<str id="customAttributes">Custom Attributes</str>
 		</group>
 
 		<group name="StageElementEditScreen" prefix="stageElementEditScreen.">
@@ -609,7 +610,7 @@
 
 			<str id="elementName">Element Name</str>
 			<str id="nameID">Name Identifier</str>
-			<str id="imageFile">Image File (WIP: needs reload)\nIn
+			<str id="imageFile">Image File\n(in "{0}")</str>
 			<str id="scroll">Scroll {0}</str>
 			<str id="scale">Scale {0}</str>
 			<str id="camera">Camera {0}</str>
