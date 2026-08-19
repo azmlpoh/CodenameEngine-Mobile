@@ -1333,7 +1333,7 @@
 			paused = true;
 
 			// 1 / 1000 chance for Gitaroo Man easter egg
-			if (allowGitaroo && FlxG.random.bool(Flags.GITAROO_CHANCE))
+			if (!chartingMode && allowGitaroo && FlxG.random.bool(Flags.GITAROO_CHANCE))
 			{
 				// gitaroo man easter egg
 				FlxG.switchState(new GitarooPause());
