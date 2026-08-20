@@ -574,7 +574,7 @@ class ComponentButton extends UIButton {
 
 			data.components.remove(component);
 			AlphabetEditor.instance.curSelectedComponent = (AlphabetEditor.instance.curSelectedComponent == component) ? null : AlphabetEditor.instance.curSelectedComponent;
-			AlphabetEditor.instance.infoWindow.button = (AlphabetEditor.instance.infoWindow.button == this) ? null
+			AlphabetEditor.instance.infoWindow.button = (AlphabetEditor.instance.infoWindow.button == this) ? null : AlphabetEditor.instance.infoWindow.button;
 			AlphabetEditor.instance.findOutline();
 			AlphabetEditor.instance.infoWindow.updateInfo();
 
