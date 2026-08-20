@@ -1,7 +1,29 @@
 name: iOS Build
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'App Version (留空使用默认)'
+        required: false
+        default: ''
+        type: string
+      compile_experimental:
+        description: '使用 COMPILE_EXPERIMENTAL (默认开启)'
+        required: false
+        default: true
+        type: boolean
   workflow_call:
+    inputs:
+      version:
+        description: 'App Version'
+        required: false
+        default: ''
+        type: string
+      compile_experimental:
+        description: '使用 COMPILE_EXPERIMENTAL'
+        required: false
+        default: true
+        type: boolean
 env: 
   PROJECT_NAME: CodenameEngine
   HAXE_VERSION: 4.3.7
@@ -18,6 +40,17 @@ jobs:
         uses: actions/checkout@main
         with:
           fetch-depth: 0
+
+      - name: Set App Version
+        run: |
+          if [ -n "${{ inputs.version }}" ]; then
+            sed -i '' 's/version="[0-9.]*"/version="${{ inputs.version }}"/' project.xml
+            echo "APP_VERSION=${{ inputs.version }}" >> $GITHUB_ENV
+          else
+            DEFAULT_VERSION=$(grep -o 'version="[0-9.]*"' project.xml | head -1 | sed 's/version="//' | sed 's/"//')
+            echo "APP_VERSION=$DEFAULT_VERSION" >> $GITHUB_ENV
+          fi
+          echo "使用版本号: $APP_VERSION"
 
       - name: Setting up Haxe
         uses: krdlab/setup-haxe@v2
@@ -57,7 +90,11 @@ jobs:
           haxelib set hxdiscord_rpc git
       - name: Building the game
         run: |
-          haxelib run lime build ios -nosign -final -D COMPILE_EXPERIMENTAL
+          if [ "${{ inputs.compile_experimental }}" == "true" ]; then
+            haxelib run lime build ios -nosign -final -D COMPILE_EXPERIMENTAL --app-version="${{ env.APP_VERSION }}"
+          else
+            haxelib run lime build ios -nosign -final --app-version="${{ env.APP_VERSION }}"
+          fi
 
       - name: Make Ipa
         run: |
@@ -69,7 +106,7 @@ jobs:
       - name: Uploading artifact (entire build)
         uses: actions/upload-artifact@v4
         with:
-          name: Codename Engine iOS
+          name: Codename Engine iOS ${{ env.APP_VERSION }}
           path: export/release/ios/build/Release-iphoneos/*
       - name: Clear Previous Cache
         uses: actions/github-script@v6
