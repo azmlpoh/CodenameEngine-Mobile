@@ -1181,6 +1181,9 @@ class StageEditor extends UIState {
 
         mouseMode = (_isJustReleased) ? NONE : mouseMode;
 
+		if (prevMode != mouseMode)
+			call("mouseModeChanged", [sprite]);
+
         if (prevMode == NONE && mouseMode == NONE) return;
 
         if (prevMode != NONE && mouseMode == NONE) {
