@@ -1,13 +1,37 @@
 name: Release
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      title:
+        description: '标题'
+        required: true
+        default: 'Mobile Release'
+        type: string
+      version:
+        description: 'APP版本 (留空使用默认)'
+        required: false
+        default: ''
+        type: string
+      compile_experimental:
+        description: '使用 COMPILE_EXPERIMENTAL'
+        required: false
+        default: false
+        type: boolean
 
 permissions: write-all
 
 jobs:
   build-android:
     uses: ./.github/workflows/android.yml
+    with:
+      version: ${{ inputs.version }}
+      compile_experimental: ${{ inputs.compile_experimental }}
+
   build-ios:
     uses: ./.github/workflows/ios.yml
+    with:
+      version: ${{ inputs.version }}
+      compile_experimental: ${{ inputs.compile_experimental }}
  
   Releaser:
     needs: [build-android, build-ios]
@@ -16,20 +40,20 @@ jobs:
       - name: Download Android Build
         uses: actions/download-artifact@main
         with:
-          name: Codename Engine Android
+          name: Codename Engine Android ${{ inputs.version }}
           path: ${{ github.workspace }}
 
       - name: Download iOS Build
         uses: actions/download-artifact@main
         with:
-          name: Codename Engine iOS
+          name: Codename Engine iOS ${{ inputs.version }}
           path: ${{ github.workspace }}
 
       - name: Publish The Release
         uses: softprops/action-gh-release@v2
         with:
-          name: "mobile-v2"
-          tag_name: "mobile-v2"
+          name: "${{ inputs.title }}"
+          tag_name: "mobile-v${{ inputs.version }}"
           prerelease: false
           files: |
             ${{ github.workspace }}/*.apk
