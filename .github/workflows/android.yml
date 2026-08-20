@@ -36,10 +36,10 @@ jobs:
       - name: Set App Version
         run: |
           if [ -n "${{ inputs.version }}" ]; then
-            sed -i 's/version="[0-9.]*"/version="${{ inputs.version }}"/' Project.xml
+            sed -i 's/version="[0-9.]*"/version="${{ inputs.version }}"/' project.xml
             echo "APP_VERSION=${{ inputs.version }}" >> $GITHUB_ENV
           else
-            DEFAULT_VERSION=$(grep -o 'version="[0-9.]*"' Project.xml | head -1 | sed 's/version="//' | sed 's/"//')
+            DEFAULT_VERSION=$(grep -o 'version="[0-9.]*"' project.xml | head -1 | sed 's/version="//' | sed 's/"//')
             echo "APP_VERSION=$DEFAULT_VERSION" >> $GITHUB_ENV
           fi
           echo "使用版本号: $APP_VERSION"
