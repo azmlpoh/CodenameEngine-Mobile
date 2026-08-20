@@ -8,6 +8,11 @@ on:
         required: false
         default: ''
         type: string
+      compile_experimental:
+        description: '使用 COMPILE_EXPERIMENTAL (默认开启)'
+        required: false
+        default: true
+        type: boolean
   workflow_call:
     inputs:
       version:
@@ -15,6 +20,11 @@ on:
         required: false
         default: ''
         type: string
+      compile_experimental:
+        description: '使用 COMPILE_EXPERIMENTAL'
+        required: false
+        default: true
+        type: boolean
 
 env:
   HAXE_VERSION: 4.3.7
@@ -99,7 +109,11 @@ jobs:
 
       - name: Building the game
         run: |
-          haxelib run lime build android -final -D ONLY_ARM64 -D COMPILE_EXPERIMENTAL --app-version="${{ env.APP_VERSION }}"
+          if [ "${{ inputs.compile_experimental }}" == "true" ]; then
+            haxelib run lime build android -final -D ONLY_ARM64 -D COMPILE_EXPERIMENTAL --app-version="${{ env.APP_VERSION }}"
+          else
+            haxelib run lime build android -final -D ONLY_ARM64 --app-version="${{ env.APP_VERSION }}"
+          fi
 
       - name: Uploading artifact (entire build)
         uses: actions/upload-artifact@v4
