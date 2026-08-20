@@ -242,7 +242,7 @@
 	<haxeflag name="--macro" value="funkin.backend.system.macros.Macros.initMacros()" />
 
 	<!-- It's cool to see -->
-	<icon path="art/teaser.png" if="mobile" />
+	<icon path="art/cne.png" if="mobile" />
 
 	<!-- Do whatever you want I'm tired uninstall and install everytime -->
 	<certificate path="key.keystore" password="psychengine" alias="psychport" alias-password="psychengine" if="android" unless="debug" />
