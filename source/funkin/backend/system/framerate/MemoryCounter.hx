@@ -41,7 +41,7 @@ class MemoryCounter extends Sprite {
 		if (alpha <= 0.05) return;
 		super.__enterFrame(t);
 
-		#if (cpp && (windows || mac || linux))
+		//#if (cpp && (windows || mac || linux))
 		var legacy = funkin.options.Options.legacyMemoryCounter;
 
 		if (legacy) {
@@ -89,7 +89,7 @@ class MemoryCounter extends Sprite {
 
 		memory = mem;
 		memoryText.text = CoolUtil.getSizeString(mem);
-		#end
+		//#end
 
 		updateLabelPosition();
 	}
