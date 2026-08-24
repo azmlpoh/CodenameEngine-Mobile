@@ -41,7 +41,7 @@ class MemoryCounter extends Sprite {
 		if (alpha <= 0.05) return;
 		super.__enterFrame(t);
 
-		#if (cpp && (windows || mac || linux))
+		#if (cpp && (windows || mac || linux || mobile))
 		var legacy = funkin.options.Options.legacyMemoryCounter;
 
 		if (legacy) {
