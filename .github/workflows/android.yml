@@ -88,6 +88,8 @@ jobs:
 
       - name: Installing/Updating libraries
         run: |
+          rm -rf ~/.haxelib
+          haxelib setup ~/haxelib
           haxe -cp commandline -D analyzer-optimize --run Main setup -si
 
       - name: Configure Android
