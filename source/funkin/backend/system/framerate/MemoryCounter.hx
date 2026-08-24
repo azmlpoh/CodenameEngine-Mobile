@@ -28,7 +28,7 @@ class MemoryCounter extends Sprite {
 			addChild(label);
 		}
 		memoryPeakText.alpha = 0.5;
-		#if !(cpp && (windows || mac || linux))
+		#if !(cpp && (windows || mac || linux) || mobile)
 		memoryPeakText.visible = false;
 		#end
 	}
