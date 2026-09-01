@@ -940,6 +940,13 @@
 			if (chartingMode) {
 				WindowUtils.prefix = Charter.undos.unsaved ? Flags.UNDO_PREFIX : "";
 				WindowUtils.suffix = TU.translate("playtesting.chartPlaytesting");
+				if (Flags.CHANGE_WINDOW_TITLE_PLAYSTATE) {
+					WindowUtils.prefix = Charter.undos.unsaved ? Flags.UNDO_PREFIX : "";
+					WindowUtils.suffix = TU.translate("playtesting.chartPlaytesting");
+				}
+
+				WindowUtils.prefix = Charter.undos.unsaved ? Flags.UNDO_PREFIX : "";
+				WindowUtils.suffix = TU.translate("playtesting.chartPlaytesting");
 
 				SaveWarning.showWarning = Charter.undos.unsaved;
 				SaveWarning.selectionClass = CharterSelection;
@@ -1153,7 +1160,7 @@
 
 			super.destroy();
 
-			WindowUtils.resetAffixes();
+			if (Flags.CHANGE_WINDOW_TITLE_PLAYSTATE) WindowUtils.resetAffixes();
 			SaveWarning.reset();
 
 			instance = null;
