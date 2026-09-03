@@ -79,7 +79,7 @@ class Main extends Sprite
 		#end
 		Sys.setCwd(MobileUtil.getAssetDirectory());
 		//Sys.setCwd(haxe.io.Path.addTrailingSlash(MobileUtil.getDirectory()));
-		MobileUtil.copyAssets(["assets/", "mods/"]);
+		MobileUtil.copyAssets();
 		#end
 		CrashHandler.init();
 
