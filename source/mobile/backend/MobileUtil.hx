@@ -209,9 +209,6 @@ class MobileUtil
 	}
 	#end
 
-	/**
-	 * @param folders Optional list of specific folders (e.g. ["assets/data/"]). If null, copies all assets.
-	 */
 	public static function copyAssets(folders:Array<String> = null, onProgress:String->Int->Int->Void = null, onComplete:Void->Void = null):Void {
 		#if mobile
 		var rootTarget = getAssetDirectory();
@@ -225,11 +222,17 @@ class MobileUtil
 					cleanPath = cleanPath.substring(colonIndex + 1);
 				}
 
-				if (!StringTools.startsWith(cleanPath, "assets/")) return false;
-				if (folders == null) return true;
+				var defaultRoots:Array<String> = ["assets/", "mods/"];
 
-				for (f in folders) {
-					if (StringTools.startsWith(cleanPath, f)) return true;
+				if (folders != null) {
+					for (f in folders) {
+						if (StringTools.startsWith(cleanPath, f)) return true;
+					}
+					return false;
+				}
+
+				for (root in defaultRoots) {
+					if (StringTools.startsWith(cleanPath, root)) return true;
 				}
 				return false;
 			});
