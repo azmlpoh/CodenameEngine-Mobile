@@ -24,6 +24,7 @@ class Options
 	public static var hitboxPos:Bool = false;
 	public static var storageType:String = "EXTERNAL_DATA";
 	public static var controlsAlpha:Float = FlxG.onMobile ? 0.6 : 0;
+	public static var hitboxAlpha:Float = 0.7;
 	public static var hitboxType:String = "Gradient";
 	public static var hitboxMode:String = 'Normal';
 	public static var mobileExtraKeyReturns:Array<String> = ['SHIFT', 'SPACE', 'Q', 'E'];

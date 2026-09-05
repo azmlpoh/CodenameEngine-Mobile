@@ -1119,6 +1119,7 @@
 			addHitbox(Options.hitboxMode + extraKeyString);
 			addHitboxCamera();
 			for (hitbox in mobileManager.hitboxes) {
+				hitbox.showAlpha = Options.hitboxAlpha;
 				if (getMobilePadButton("pause") != null)
 					hitbox.deadZones.push(getMobilePadButton("pause"));
 			}

@@ -79,6 +79,7 @@ class MobileOptions extends TreeMenuScreen
 				FlxG.sound.muteKeys = [FlxKey.ZERO, FlxKey.NUMPADZERO];
 			}
 		}));
+		add(new NumOption(getNameID('hitboxAlpha'), getDescID('hitboxAlpha'), 0.0, 1.0, 0.1, 'hitboxAlpha'));
 		#if android
 		add(externalOption = new ArrayOption(getNameID('storageType'), getDescID('storageType'), storageTypes,
 			storageTypes, 'storageType'));
