@@ -1454,6 +1454,8 @@
 
 			if (Options.camZoomOnBeat && camZooming) {
 				var beat = Conductor.getBeats(camZoomingEvery, camZoomingInterval, camZoomingOffset);
+				if (camZoomingLastBeat != beat) {
+				camZoomingLastBeat = beat;
 
 				doBopZoom();
 				}
