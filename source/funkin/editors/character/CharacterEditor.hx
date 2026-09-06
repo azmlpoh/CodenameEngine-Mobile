@@ -427,7 +427,7 @@ class CharacterEditor extends UIState {
 		var btnY = s - h - s - s;
 
 		var btnLeft = new UIButton(btnStartX, startBtnY, "<", () -> { mobileExtraMode ? _offsets_extra_left(null) : _offsets_left(null); }, w, h);
-        var btnExtra:UIButton;
+        var btnExtra:UIButton = null;
 		btnExtra = new UIButton(btnStartX, startBtnY + btnY, "x5\n(OFF)", () -> {
 			mobileExtraMode = !mobileExtraMode;
 			btnExtra.field.text = mobileExtraMode ? "x5\n(ON)" : "x5\n(OFF)";
