@@ -120,6 +120,9 @@
 		<str id="hitboxPos-name">Hitbox Position</str>
 		<str id="hitboxPos-desc">If checked, the Hitbox will be put at the top of the screen, otherwise will stay at the bottom.</str>
 
+		<str id="hitboxAlpha-name">Hitbox Press Opacity</str>
+		<str id="hitboxAlpha-desc">Change how opaque the Hitbox keys look when pressed</str>
+
 		<str id="storageType-name">Folder</str>
 		<str id="storageType-desc">Which folder Codename Engine Mods should stored?\nCan be added custom folders, check android/data for that</str>
 
