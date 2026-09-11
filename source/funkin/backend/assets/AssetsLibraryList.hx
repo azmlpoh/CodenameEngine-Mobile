@@ -16,7 +16,7 @@ class AssetsLibraryList extends AssetLibrary {
 	}
 
 	public var rootDirectory:String = "./assets";
-
+	
 	// is true if any library in `libraries` contains some kind of compressed library. 
 	public var hasCompressedLibrary(get, never):Bool;
 	function get_hasCompressedLibrary():Bool {
@@ -53,6 +53,7 @@ class AssetsLibraryList extends AssetLibrary {
 		}
 		return lib;
 	}
+
 	var assetPathCacheLibrary:Map<AssetSource, Map<Null<String>, Map<String, AssetLibrary>>> = [];
 	var assetPathCacheTime:Map<AssetSource, Map<Null<String>, Map<String, Float>>> = [];
 
@@ -104,9 +105,9 @@ class AssetsLibraryList extends AssetLibrary {
 				else
 					return library;
 			}
-		}
 
 			cacheTimePaths.set(id, time);
+		}
 
 		for (library in libraries) {
 			if (shouldSkipLib(library, source)) continue;
