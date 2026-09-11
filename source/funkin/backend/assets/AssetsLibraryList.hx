@@ -221,13 +221,13 @@ class AssetsLibraryList extends AssetLibrary {
 		Logs.infos("Used cne test / cne build. Switching into source assets.");
 		switchToSourceAssets();
 		#elseif USE_ADAPTED_ASSETS
-		if (sys.FileSystem.exists('./${Main.pathBack}assets/') && !sys.FileSystem.exists('./assets/')) {
+		if (sys.FileSystem.exists('${Main.pathBack}assets/') && !sys.FileSystem.exists('assets/')) {
 			Logs.infos("Source assets detected. Switching into source assets.");
 			switchToSourceAssets();
 		}
 		#end
 
-		__defaultLibraries.push(ModsFolder.loadLibraryFromFolder('assets', rootDirectory, true, null, SOURCE));
+		__defaultLibraries.push(ModsFolder.loadLibraryFromFolder('assets', #if mobile MobileUtil.getAssetDirectory() + #end rootDirectory, true, null, SOURCE));
 
 		#end
 
@@ -241,7 +241,7 @@ class AssetsLibraryList extends AssetLibrary {
 		ModsFolder.addonsPath = '${Main.pathBack}addons/';
 		#end
 
-		rootDirectory = './${Main.pathBack}assets/';
+		rootDirectory = '${Main.pathBack}assets/';
 	}
 	#end
 
