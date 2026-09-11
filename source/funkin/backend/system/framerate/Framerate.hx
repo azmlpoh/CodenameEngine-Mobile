@@ -20,6 +20,13 @@ class Framerate extends Sprite {
 	#if SHOW_BUILD_ON_FPS
 	public static var codenameBuildField:CodenameBuildField;
 	#end
+	public static var conductorInfo:ConductorInfo;
+	public static var flixelInfo:FlixelInfo;
+	public static var systemInfo:SystemInfo;
+	public static var assetInfo:AssetTreeInfo;
+	#if (gl_stats && !disable_cffi && (!html5 || !canvas))
+	public static var statsInfo:StatsInfo;
+	#end
 
 	public static var fontName:String = "assets/fonts/Consolas.ttf";
 
@@ -28,7 +35,7 @@ class Framerate extends Sprite {
 	 * 1: FPS VISIBLE
 	 * 2: FPS & DEBUG INFO VISIBLE
 	 */
-	public static var debugMode:Int = 1;
+	public static var debugMode:Int = Options.fpsCounter ? 1 : 0;
 	public static var offset:FlxPoint = new FlxPoint();
 
 	public var bgSprite:Bitmap;
@@ -71,13 +78,13 @@ class Framerate extends Sprite {
 		#if SHOW_BUILD_ON_FPS
 		__addToList(codenameBuildField = new CodenameBuildField());
 		#end
-		__addCategory(new ConductorInfo());
-		__addCategory(new FlixelInfo());
-		__addCategory(new SystemInfo());
-		__addCategory(new AssetTreeInfo());
+		__addCategory(conductorInfo = new ConductorInfo());
+		__addCategory(flixelInfo = new FlixelInfo());
+		__addCategory(systemInfo = new SystemInfo());
+		__addCategory(assetInfo = new AssetTreeInfo());
 
 		#if (gl_stats && !disable_cffi && (!html5 || !canvas))
-		__addCategory(new StatsInfo());
+		__addCategory(statsInfo = new StatsInfo());
 		#end
 	}
 
@@ -161,6 +168,7 @@ class Framerate extends Sprite {
 
 		var y:Float = height + 4;
 		for(c in categories) {
+			if (!c.visible) continue;
 			c.title.selectable = c.text.selectable = selectable;
 			c.alpha = debugAlpha;
 			c.x = FlxMath.lerp(-c.width - offset.x, 0, debugAlpha);
