@@ -171,7 +171,7 @@ class MainState extends FlxState {
 
 		mobile.Config.init();
 
-		if (@:privateAccess FlxG.game._requestedState == null) {
+		if (@:privateAccess FlxG.game._state == @:privateAccess FlxG.game._requestedState) {
 			var startState:Class<FlxState> = Flags.DISABLE_WARNING_SCREEN ? TitleState : funkin.menus.WarningState;
 			var outdatedAPI:Bool = (Flags.MOD_API_VERSION ?? Flags.CURRENT_API_VERSION) < Flags.CURRENT_API_VERSION;
 			// In this case if the mod we just loaded a compressed modpack, we can't edit or modify files without decompressing it.
