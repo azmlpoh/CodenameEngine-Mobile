@@ -23,6 +23,9 @@ class Config {
 		"haxe.xml",
 		"haxe.CallStack",
 		"funkin",
+		#if foxlite 
+		"foxlite" 
+		#end
 		#end
 	];
 
